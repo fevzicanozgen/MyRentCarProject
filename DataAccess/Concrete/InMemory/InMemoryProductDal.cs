@@ -3,58 +3,52 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.InMemory
 {
-    public class InMemoryProductDal :IProductDal
+    public class InMemoryProductDal : ICarsDal
     {
-        List<Car> _cars;
+        List<Cars> _cars;
 
         public InMemoryProductDal()
         {
-            _cars = new List<Car>
+            _cars = new List<Cars>
             {
-                new Car {Id=1,BrandId=1,ColorId=1,DailyPrice=1000,ModelYear=2021,Description="Red BMW M4"},
-                  new Car {Id=2,BrandId=2,ColorId=2,DailyPrice=750,ModelYear=2019,Description="Black Mercedes E250"},
-                    new Car {Id=3,BrandId=3,ColorId=3,DailyPrice=600,ModelYear=2017,Description="White Audi A3"},
-                      new Car {Id=4,BrandId=4,ColorId=4,DailyPrice=350,ModelYear=2015,Description="Blue VW Polo"},
-
-
-
+                new Cars {Id=1,BrandId=1,ColorId=1,DailyPrice=1000,ModelYear=2021,Description="Red BMW M4"},
+                  new Cars {Id=2,BrandId=2,ColorId=2,DailyPrice=750,ModelYear=2019,Description="Black Mercedes E250"},
+                    new Cars {Id=3,BrandId=3,ColorId=3,DailyPrice=600,ModelYear=2017,Description="White Audi A3"},
+                      new Cars {Id=4,BrandId=4,ColorId=4,DailyPrice=350,ModelYear=2015,Description="Blue VW Polo"},
             };
         }
-        public void Add(Car car)
+
+        public void Add(Cars entity)
         {
-            _cars.Add(car);
+            _cars.Add(entity);
         }
 
-        public void Delete(Car car)
+        public void Delete(Cars entity)
         {
-            Car CarToDelete = CarToDelete = _cars.SingleOrDefault(c => c.Id == car.Id);
+            Cars CarToDelete = CarToDelete = _cars.SingleOrDefault(c => c.Id == entity.Id);
             _cars.Remove(CarToDelete);
         }
 
-        public List<Car> GetAll()
+        public List<Cars> GetAll(Expression<Func<Cars, bool>> filter = null)
         {
-            return _cars;
+            return _cars.Where(c => c.Id==c.Id ).ToList();
+           
         }
 
-        public List<Car> GetById(int CarId)
+        public void Update(Cars entity)
         {
-            return _cars.Where(c => c.Id == CarId).ToList();
-        }
-
-        public void Update(Car car)
-        {
-            Car CarToUpdate = CarToUpdate = _cars.SingleOrDefault(c => c.Id == car.Id);
-            CarToUpdate.ModelYear = car.ModelYear;
-            CarToUpdate.ColorId = car.ColorId;
-            CarToUpdate.BrandId = car.BrandId;
-            CarToUpdate.DailyPrice = car.DailyPrice;
-            CarToUpdate.Description = car.Description;
-
+            Cars CarToUpdate = CarToUpdate = _cars.SingleOrDefault(c => c.Id == entity.Id);
+            CarToUpdate.ModelYear = entity.ModelYear;
+            CarToUpdate.ColorId = entity.ColorId;
+            CarToUpdate.BrandId = entity.BrandId;
+            CarToUpdate.DailyPrice = entity.DailyPrice;
+            CarToUpdate.Description = entity.Description;
         }
     }
 }
