@@ -1,5 +1,6 @@
 ﻿using Entities.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Business.Abstract
 
 
         List<Cars> GetCarsByColorId(int id);
-        void Add(Cars car);
+        void Add(Cars cars);
 
     }
 

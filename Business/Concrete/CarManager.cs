@@ -2,6 +2,7 @@
 using DataAccess.Abstract;
 using Entities.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +20,24 @@ namespace Business.Concrete
             _carsDal = carsDal;
         }
 
-        public void Add(Cars car)
+        public void Add(Cars cars)
         {
-            _carsDal.Add(car);
+            if (cars.DailyPrice <= 0)
+            {
+                Console.WriteLine("The daily price should be greater then 0.");
+            }
+            else if (cars.CarName.Length <= 2)
+            {
+                Console.WriteLine("The car name should be longer then two letters.");
+            }
+            else
+            {
+                _carsDal.Add(cars);
+                Console.WriteLine("Car added to database.");
+            }
         }
+
+       
 
         public List<Cars> GetAll()
         {
