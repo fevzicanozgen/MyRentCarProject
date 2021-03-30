@@ -11,5 +11,6 @@ namespace Entities.Concrete
     {
         public int ColorsId { get; set; }
         public string ColorsName { get; set; }
+
     }
 }
