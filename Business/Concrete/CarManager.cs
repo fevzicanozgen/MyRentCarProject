@@ -30,12 +30,12 @@ namespace Business.Concrete
             }
             else if (cars.CarName.Length <= 2)
             {
-                return new ErrorResult(Messages.CarName);
+                return new ErrorResult(Messages.Invalid);
             }
             else
             {
                 _carsDal.Add(cars);
-                return new SuccessResult(Messages.CarAdded);
+                return new SuccessResult(Messages.Added);
             }
         }
 
@@ -45,6 +45,11 @@ namespace Business.Concrete
         {
             
             return new SuccessDataResult<List<Cars>>(_carsDal.GetAll(), Messages.CarListed);
+        }
+
+        public IDataResult<List<Cars>> GetAllById(int id)
+        {
+            return new SuccessDataResult<List<Cars>>(_carsDal.GetAll(c => c.Id == id));
         }
 
         public DataResult<List<Cars>> GetByDailyPrice()
@@ -59,7 +64,7 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
 
             }
-            return new SuccessDataResult<List<CarDetailDto>>(_carsDal.GetCarDetails(), Messages.CarAdded);
+            return new SuccessDataResult<List<CarDetailDto>>(_carsDal.GetCarDetails(), Messages.Added);
 
 
         }
