@@ -32,8 +32,26 @@ namespace WebAPI
         {
 
             services.AddControllers();
+
             services.AddSingleton<ICarService, CarManager>();
             services.AddSingleton<ICarsDal, EfCarsDal>();
+
+            services.AddSingleton<IBrandService, BrandManager>();
+            services.AddSingleton<IBrandDal, EfBrandDal>();
+
+            services.AddSingleton<IColorService, ColorManager>();
+            services.AddSingleton<IColorsDal, EfColorsDal>();
+
+            services.AddSingleton<ICustomerService, CustomerManager>();
+            services.AddSingleton<ICustomersDal, EfCustomersDal>();
+
+            services.AddSingleton<IUsersService, UserManager>();
+            services.AddSingleton<IUsersDal, EfUsersDal>();
+
+            services.AddSingleton<IRentalsService, RentalsManager>();
+            services.AddSingleton<IRentalsDal, EfRentalsDal>();
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
