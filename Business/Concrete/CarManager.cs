@@ -26,17 +26,16 @@ namespace Business.Concrete
         {
             if (cars.DailyPrice <= 0)
             {
-                return new ErrorResult(Messages.DailyPrice);
+             return new ErrorResult(Messages.DailyPrice);
             }
-            else if (cars.CarName.Length <= 2)
+            else if (cars.CarName.Length < 2)
             {
                 return new ErrorResult(Messages.Invalid);
             }
-            else
-            {
+           
                 _carsDal.Add(cars);
                 return new SuccessResult(Messages.Added);
-            }
+            
         }
 
 
@@ -68,8 +67,6 @@ namespace Business.Concrete
 
 
         }
-    
-
         public IDataResult<List<Cars>> GetCarsByBrandId(int id)
         {
             return new SuccessDataResult<List<Cars>>(_carsDal.GetAll(c=>c.BrandId==id));

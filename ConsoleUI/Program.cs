@@ -17,23 +17,18 @@ namespace ConsoleUI
         {
          
 
-          //  CarTest();
+          CarTest();
 
             //BrandTest();
 
             //ColorTest();
 
 
-          //  GetCarDetailsTest();
+          //GetCarDetailsTest();
        
 
         }
 
-       
-
-      
-
-       
 
         private static void GetCarDetailsTest()
         {
@@ -84,7 +79,7 @@ namespace ConsoleUI
         private static void CarTest()
         {
             CarManager carManager = new CarManager(new EfCarsDal());
-            carManager.Add(new Cars { CarName="Bmw",BrandId = 7, ColorId = 3, DailyPrice = 1000, Description = "428i Petrol and Automatic", ModelYear = 2021,Id=6 });
+            carManager.Add(new Cars { CarName="Bmw",BrandId = 7, ColorId = 3, DailyPrice = 1000, Description = "428i Petrol and Automatic", ModelYear = 2021 });
             Console.WriteLine(Messages.Added + Environment.NewLine);
             list();
 
