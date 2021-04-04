@@ -16,18 +16,19 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
 
-
-            CarTest();
+         
+            //CarTest();
 
             //BrandTest();
 
             //ColorTest();
 
 
-            //GetCarDetailsTest();
+           // GetCarDetailsTest();
            // GetByIdTests();
 
         }
+       
 
         private static void GetByIdTests()
         {
@@ -45,7 +46,7 @@ namespace ConsoleUI
             var result = carManager.GetCarDetails();
             foreach (var car in result.Data)
             {
-                Console.WriteLine(car.CarName + " " + car.ColorsName);
+                Console.WriteLine(car.CarName + " " + car.ColorsName +"" + car.DailyPrice);
             }
         }
 
