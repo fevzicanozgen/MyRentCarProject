@@ -41,6 +41,11 @@ namespace DataAccess.Concrete.InMemory
             _cars.Remove(CarToDelete);
         }
 
+        public Cars Get(Expression<Func<Cars, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Cars> GetAll(Expression<Func<Cars, bool>> filter = null)
         {
             return _cars.Where(c => c.Id==c.Id ).ToList();
