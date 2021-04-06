@@ -11,19 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class UserController : ControllerBase
     {
-        ICarService _carService;
+        IUserService _usersService;
 
-        public CarsController(ICarService carService)
+        public UserController(IUserService userService)
         {
-            _carService = carService;
+            _usersService = userService;
         }
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
 
-            var result = _carService.GetAll();
+            var result = _usersService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -33,7 +33,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _carService.GetAllById(id);
+            var result = _usersService.GetAllById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -41,16 +41,14 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("add")]
-        public IActionResult Add(Cars cars)
+        public IActionResult Add(User users)
         {
-            var result = _carService.Add(cars);
+            var result = _usersService.Add(users);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result.Message);
         }
-
-
     }
 }

@@ -25,31 +25,31 @@ namespace Business.Concrete
         public IResult Delete(Customer customer)
         {
             _customerDal.Delete(customer);
-            return new SuccessResult(Messages.Deleted);
+            return new SuccessResult(Messages.CustomerDeleted);
         }
 
         public IDataResult<List<Customer>> GetAll()
         {
 
-            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll());
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(),Messages.CustomerListed);
         }
 
         public IDataResult<List<Customer>> GetAllById(int id)
         {
-            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(p => p.UserId == id));
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(p => p.UserId == id),Messages.CustomerListedById);
         }
 
         [ValidationAspect(typeof(CustomerValidator))]
         public IResult Add(Customer customer)
         {
             _customerDal.Add(customer);
-            return new SuccessResult(Messages.Added);
+            return new SuccessResult(Messages.CustomerAdded);
         }
 
         public IResult Update(Customer customer)
         {
             _customerDal.Update(customer);
-            return new SuccessResult(Messages.Updated);
+            return new SuccessResult(Messages.CustomerUpdated);
         }
     }
 }

@@ -89,7 +89,7 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EfCarsDal());
             carManager.Add(new Cars { CarName="Bmw",BrandId = 7, ColorId = 3, DailyPrice = 1000, Description = "428i Petrol and Automatic", ModelYear = 2021 });
-            Console.WriteLine(Messages.Added + Environment.NewLine);
+            Console.WriteLine(Messages.CarAdded + Environment.NewLine);
             list();
 
             void list()

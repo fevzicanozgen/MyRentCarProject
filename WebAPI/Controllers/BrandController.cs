@@ -11,19 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class BrandController : ControllerBase
     {
-        IUserService _usersService;
+        IBrandService _brandService;
 
-        public UsersController(IUserService userService)
+        public BrandController(IBrandService brandService)
         {
-            _usersService = userService;
+            _brandService = brandService;
         }
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
 
-            var result = _usersService.GetAll();
+            var result = _brandService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -33,7 +33,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _usersService.GetAllById(id);
+            var result = _brandService.GetAllById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -41,9 +41,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("add")]
-        public IActionResult Add(User users)
+        public IActionResult Add(Brand brand)
         {
-            var result = _usersService.Add(users);
+            var result = _brandService.Add(brand);
             if (result.Success)
             {
                 return Ok(result);

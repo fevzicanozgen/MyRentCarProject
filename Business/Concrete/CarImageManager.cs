@@ -38,7 +38,7 @@ namespace Business.Concrete
             carImage.ImagePath = FileHelper.Add(file);
             carImage.Date = DateTime.Now;
             _carsImageDal.Add(carImage);
-            return new SuccessResult(Messages.CarListed);
+            return new SuccessResult(Messages.CarImageAdded);
         }
 
         public IResult Delete(CarImage carImages)
@@ -52,7 +52,7 @@ namespace Business.Concrete
             }
 
             _carsImageDal.Delete(carImages);
-            return new SuccessResult(Messages.CarNotAvailable);
+            return new SuccessResult(Messages.CarImageDeleted);
 
 
         }
@@ -64,7 +64,7 @@ namespace Business.Concrete
 
         public IDataResult<List<CarImage>> GetAll()
         {
-            return new SuccessDataResult<List<CarImage>>(_carsImageDal.GetAll(), Messages.CarListed);
+            return new SuccessDataResult<List<CarImage>>(_carsImageDal.GetAll(), Messages.CarImagesListed);
 
         }
 
@@ -96,7 +96,7 @@ namespace Business.Concrete
             var carImageCount = _carsImageDal.GetAll(p => p.CarId == carId).Count;
             if (carImageCount >= 5)
             {
-                return new ErrorResult(Messages.CarNotAvailable);
+                return new ErrorResult(Messages.CarCheckImageLimited);
             }
             return new SuccessResult();
         }

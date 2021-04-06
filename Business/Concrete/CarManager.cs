@@ -27,7 +27,7 @@ namespace Business.Concrete
         public IResult Add(Cars cars)
         {
                 _carsDal.Add(cars);
-                return new SuccessResult(Messages.Added);
+                return new SuccessResult(Messages.CarAdded);
             
         }
 
@@ -53,10 +53,10 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 23)
             {
-                return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTime);
+                return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTeam);
 
             }
-            return new SuccessDataResult<List<CarDetailDto>>(_carsDal.GetCarDetails(), Messages.Added);
+            return new SuccessDataResult<List<CarDetailDto>>(_carsDal.GetCarDetails(), Messages.CarListed);
 
 
         }

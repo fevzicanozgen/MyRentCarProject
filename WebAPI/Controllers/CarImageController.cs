@@ -11,11 +11,11 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarImagesController : ControllerBase
+    public class CarImageController : ControllerBase
     {
         ICarImageService _carImagesService;
 
-        public CarImagesController(ICarImageService carsImagesService)
+        public CarImageController(ICarImageService carsImagesService)
         {
             _carImagesService = carsImagesService;
         }

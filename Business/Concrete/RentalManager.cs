@@ -25,7 +25,7 @@ namespace Business.Concrete
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
-            return new SuccessResult(Messages.Deleted);
+            return new SuccessResult();
         }
 
         public IDataResult<List<Rental>> GetAll()
@@ -44,14 +44,14 @@ namespace Business.Concrete
         public IResult Add(Rental rental)
         {
             _rentalDal.Add(rental);
-            return new SuccessResult(Messages.Added);
+            return new SuccessResult(Messages.RentalAdded);
 
         }
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
-            return new SuccessResult(Messages.Updated);
+            return new SuccessResult(Messages.RentalUpdated);
         }
     }
 }
