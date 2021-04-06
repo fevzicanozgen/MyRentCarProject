@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface ICarsDal : IEntityRepository<Cars>
+    public interface ICarDal : IEntityRepository<Cars>
     {
         List<CarDetailDto> GetCarDetails (Expression<Func<CarDetailDto, bool>> filter = null);
 

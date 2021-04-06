@@ -15,38 +15,38 @@ namespace Business.Concrete
 {
     public class CustomerManager : ICustomerService
     {
-        ICustomersDal _customerDal;
+        ICustomerDal _customerDal;
 
-        public CustomerManager(ICustomersDal customerDal)
+        public CustomerManager(ICustomerDal customerDal)
         {
             _customerDal = customerDal;
         }
 
-        public IResult Delete(Customers customer)
+        public IResult Delete(Customer customer)
         {
             _customerDal.Delete(customer);
             return new SuccessResult(Messages.Deleted);
         }
 
-        public IDataResult<List<Customers>> GetAll()
+        public IDataResult<List<Customer>> GetAll()
         {
 
-            return new SuccessDataResult<List<Customers>>(_customerDal.GetAll());
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll());
         }
 
-        public IDataResult<List<Customers>> GetAllById(int id)
+        public IDataResult<List<Customer>> GetAllById(int id)
         {
-            return new SuccessDataResult<List<Customers>>(_customerDal.GetAll(p => p.UserId == id));
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(p => p.UserId == id));
         }
 
-        [ValidationAspect(typeof(CustomersValidator))]
-        public IResult Add(Customers customer)
+        [ValidationAspect(typeof(CustomerValidator))]
+        public IResult Add(Customer customer)
         {
             _customerDal.Add(customer);
             return new SuccessResult(Messages.Added);
         }
 
-        public IResult Update(Customers customer)
+        public IResult Update(Customer customer)
         {
             _customerDal.Update(customer);
             return new SuccessResult(Messages.Updated);

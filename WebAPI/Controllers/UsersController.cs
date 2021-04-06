@@ -13,9 +13,9 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        IUsersService _usersService;
+        IUserService _usersService;
 
-        public UsersController(IUsersService userService)
+        public UsersController(IUserService userService)
         {
             _usersService = userService;
         }
@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("add")]
-        public IActionResult Add(Users users)
+        public IActionResult Add(User users)
         {
             var result = _usersService.Add(users);
             if (result.Success)

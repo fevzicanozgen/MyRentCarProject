@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Business.ValidationRules.FluentValidation
 {
-   public class UsersValidator : AbstractValidator<Users>
+   public class UserValidator : AbstractValidator<User>
     {
-        public UsersValidator()
+        public UserValidator()
         {
             RuleFor(users => users.Email).NotEmpty();
             RuleFor(users => users.FirstName).NotEmpty();

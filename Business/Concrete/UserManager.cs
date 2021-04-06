@@ -13,39 +13,39 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class UserManager : IUsersService
+    public class UserManager : IUserService
     {
-        IUsersDal _userDal;
+        IUserDal _userDal;
 
-        public UserManager(IUsersDal userDal)
+        public UserManager(IUserDal userDal)
         {
             _userDal = userDal;
         }
 
-        public IResult Delete(Users user)
+        public IResult Delete(User user)
         {
             _userDal.Delete(user);
             return new SuccessResult(Messages.Deleted);
         }
 
-        public IDataResult<List<Users>> GetAll()
+        public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<Users>>(_userDal.GetAll());
+            return new SuccessDataResult<List<User>>(_userDal.GetAll());
         }
 
-        public IDataResult<List<Users>> GetAllById(int id)
+        public IDataResult<List<User>> GetAllById(int id)
         {
-            return new SuccessDataResult<List<Users>>(_userDal.GetAll(p => p.Id == id));
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(p => p.Id == id));
         }
 
-        [ValidationAspect(typeof(UsersValidator))]
-        public IResult Add(Users user)
+        [ValidationAspect(typeof(UserValidator))]
+        public IResult Add(User user)
         {
             _userDal.Add(user);
             return new SuccessResult(Messages.Added);
         }
-        [ValidationAspect(typeof(UsersValidator))]
-        public IResult Update(Users user)
+        [ValidationAspect(typeof(UserValidator))]
+        public IResult Update(User user)
         {
             _userDal.Update(user);
             return new SuccessResult(Messages.Updated);

@@ -17,17 +17,17 @@ using Core.Business;
 
 namespace Business.Concrete
 {
-    public class CarImageManager : ICarsImageService
+    public class CarImageManager : ICarImageService
     {
-        ICarsImageDal _carsImageDal;
+        ICarImageDal _carsImageDal;
 
-        public CarImageManager(ICarsImageDal carImageDal)
+        public CarImageManager(ICarImageDal carImageDal)
         {
             _carsImageDal = carImageDal;
         }
 
-        [ValidationAspect(typeof(CarsImageValidator))]
-        public IResult Add(CarsImage carImage, IFormFile file)
+        [ValidationAspect(typeof(CarImageValidator))]
+        public IResult Add(CarImage carImage, IFormFile file)
         {
             IResult result = BusinessRules.Run(CheckImageLimited(carImage.CarId));
             if (result != null)
@@ -41,7 +41,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarListed);
         }
 
-        public IResult Delete(CarsImage carImages)
+        public IResult Delete(CarImage carImages)
         {
             var oldpath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\wwwroot")) + _carsImageDal.GetAll(p => p.Id == carImages.Id);
             IResult result = BusinessRules.Run(FileHelper.Delete(oldpath));
@@ -57,31 +57,31 @@ namespace Business.Concrete
 
         }
 
-        public IDataResult<CarsImage> Get(int id)
+        public IDataResult<CarImage> Get(int id)
         {
-            return new SuccessDataResult<CarsImage>(_carsImageDal.Get(p => p.Id == id));
+            return new SuccessDataResult<CarImage>(_carsImageDal.Get(p => p.Id == id));
         }
 
-        public IDataResult<List<CarsImage>> GetAll()
+        public IDataResult<List<CarImage>> GetAll()
         {
-            return new SuccessDataResult<List<CarsImage>>(_carsImageDal.GetAll(), Messages.CarListed);
+            return new SuccessDataResult<List<CarImage>>(_carsImageDal.GetAll(), Messages.CarListed);
 
         }
 
-        public IDataResult<List<CarsImage>> GetImagesByCarId(int CarId)
+        public IDataResult<List<CarImage>> GetImagesByCarId(int CarId)
         {
             var result = _carsImageDal.GetAll(c => c.CarId == CarId).Any();
             if (!result)
             {
-                List<CarsImage> carimage = new List<CarsImage>();
-                carimage.Add(new CarsImage { CarId = CarId, ImagePath = @"\Images\default.png" });
-                return new SuccessDataResult<List<CarsImage>>(carimage);
+                List<CarImage> carimage = new List<CarImage>();
+                carimage.Add(new CarImage { CarId = CarId, ImagePath = @"\Images\default.png" });
+                return new SuccessDataResult<List<CarImage>>(carimage);
             }
-            return new SuccessDataResult<List<CarsImage>>(_carsImageDal.GetAll(p => p.CarId == CarId));
+            return new SuccessDataResult<List<CarImage>>(_carsImageDal.GetAll(p => p.CarId == CarId));
         }
 
-        [ValidationAspect(typeof(CarsImageValidator))]
-        public IResult Update(CarsImage carImage, IFormFile file)
+        [ValidationAspect(typeof(CarImageValidator))]
+        public IResult Update(CarImage carImage, IFormFile file)
         {
             var oldPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\wwwroot")) + _carsImageDal.Get(p => p.Id == carImage.CarId).ImagePath;
 

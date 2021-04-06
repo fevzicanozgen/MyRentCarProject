@@ -55,7 +55,7 @@ namespace ConsoleUI
         private static void ColorTest()
         {
             ColorManager colorManager = new ColorManager(new EfColorsDal());
-            colorManager.Add(new Colors { ColorsName = "Deep Blue",ColorsId=5 });
+            colorManager.Add(new Color { ColorsName = "Deep Blue",ColorsId=5 });
             Console.WriteLine("New Color Added" + Environment.NewLine);
             
             list();

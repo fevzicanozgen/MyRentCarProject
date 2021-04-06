@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("add")]
-        public IActionResult Add(Customers customers)
+        public IActionResult Add(Customer customers)
         {
             var result = _customerService.Add(customers);
             if (result.Success)

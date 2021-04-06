@@ -38,13 +38,13 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(p => p.BrandId == brandId));
         }
-        [ValidationAspect(typeof(BrandsValidator))]
+        [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
                 _brandDal.Add(brand);
             return new SuccessResult(Messages.Added);
         }
-        [ValidationAspect(typeof(BrandsValidator))]
+        [ValidationAspect(typeof(BrandValidator))]
         public IResult Update(Brand brand)
         {
             _brandDal.Update(brand);

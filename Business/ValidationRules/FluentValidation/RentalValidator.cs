@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Business.ValidationRules.FluentValidation
 {
-  public  class RentalsValidator : AbstractValidator<Rentals>
+  public  class RentalValidator : AbstractValidator<Rental>
     {
-        public RentalsValidator()
+        public RentalValidator()
         {
         }
     }

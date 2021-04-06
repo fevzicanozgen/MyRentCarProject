@@ -13,42 +13,42 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class RentalsManager : IRentalsService
+    public class RentalManager : IRentalService
     {
-        IRentalsDal _rentalDal;
+        IRentalDal _rentalDal;
 
-        public RentalsManager(IRentalsDal rentalDal)
+        public RentalManager(IRentalDal rentalDal)
         {
             _rentalDal = rentalDal;
         }
 
-        public IResult Delete(Rentals rental)
+        public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
             return new SuccessResult(Messages.Deleted);
         }
 
-        public IDataResult<List<Rentals>> GetAll()
+        public IDataResult<List<Rental>> GetAll()
         {
-            return new SuccessDataResult<List<Rentals>>(_rentalDal.GetAll());
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
         }
 
-        public IDataResult<List<Rentals>> GetAllById(int id)
+        public IDataResult<List<Rental>> GetAllById(int id)
         {
 
-            return new SuccessDataResult<List<Rentals>>(_rentalDal.GetAll(p => p.Id == id));
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(p => p.Id == id));
         }
 
 
-        [ValidationAspect(typeof(RentalsValidator))]
-        public IResult Add(Rentals rental)
+        [ValidationAspect(typeof(RentalValidator))]
+        public IResult Add(Rental rental)
         {
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.Added);
 
         }
-        [ValidationAspect(typeof(RentalsValidator))]
-        public IResult Update(Rentals rental)
+        [ValidationAspect(typeof(RentalValidator))]
+        public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.Updated);

@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class CarsImage :IEntity
+   public class Customer :IEntity
     {
         [Key]
-        public int Id { get; set; }
-        public int CarId { get; set; }
-        public string ImagePath { get; set; }
-        public DateTime Date { get; set; }
+        public int UserId { get; set; }
+        public string CompanyName { get; set; }
+
     }
 }

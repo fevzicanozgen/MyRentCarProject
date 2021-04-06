@@ -15,37 +15,37 @@ namespace Business.Concrete
 {
     public class ColorManager : IColorService
     {
-        IColorsDal _colorDal;
+        IColorDal _colorDal;
 
-        public ColorManager(IColorsDal colorDal)
+        public ColorManager(IColorDal colorDal)
         {
             _colorDal = colorDal;
         }
 
-        public IResult Delete(Colors color)
+        public IResult Delete(Color color)
         {
             _colorDal.Delete(color);
             return new SuccessResult(Messages.Deleted);
         }
 
-        public IDataResult<List<Colors>> GetAll()
+        public IDataResult<List<Color>> GetAll()
         {
-            return new SuccessDataResult<List<Colors>>(_colorDal.GetAll());
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll());
         }
 
-        public IDataResult<List<Colors>> GetAllById(int colorId)
+        public IDataResult<List<Color>> GetAllById(int colorId)
         {
-            return new SuccessDataResult<List<Colors>>(_colorDal.GetAll(p => p.ColorsId == colorId));
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(p => p.ColorsId == colorId));
         }
 
-        [ValidationAspect(typeof(ColorsValidator))]
-        public IResult Add(Colors color)
+        [ValidationAspect(typeof(ColorValidator))]
+        public IResult Add(Color color)
         {
             _colorDal.Add(color);
             return new SuccessResult(Messages.Added);
         }
-        [ValidationAspect(typeof(ColorsValidator))]
-        public IResult Update(Colors color)
+        [ValidationAspect(typeof(ColorValidator))]
+        public IResult Update(Color color)
         {
             _colorDal.Update(color);
             return new SuccessResult(Messages.Updated);

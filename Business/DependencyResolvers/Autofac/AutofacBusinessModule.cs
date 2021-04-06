@@ -19,25 +19,25 @@ namespace Business.DependencyResolvers.Autofac
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<CarManager>().As<ICarService>().SingleInstance();
-            builder.RegisterType<EfCarsDal>().As<ICarsDal>().SingleInstance();
+            builder.RegisterType<EfCarsDal>().As<ICarDal>().SingleInstance();
 
             builder.RegisterType<BrandManager>().As<IBrandService>().SingleInstance();
             builder.RegisterType<EfBrandDal>().As<IBrandDal>().SingleInstance();
 
             builder.RegisterType<ColorManager>().As<IColorService>().SingleInstance();
-            builder.RegisterType<EfColorsDal>().As<IColorsDal>().SingleInstance();
+            builder.RegisterType<EfColorsDal>().As<IColorDal>().SingleInstance();
 
-            builder.RegisterType<UserManager>().As<IUsersService>().SingleInstance();
-            builder.RegisterType<EfUsersDal>().As<IUsersDal>().SingleInstance();
+            builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
+            builder.RegisterType<EfUsersDal>().As<IUserDal>().SingleInstance();
 
-            builder.RegisterType<RentalsManager>().As<IRentalsService>().SingleInstance();
-            builder.RegisterType<EfRentalsDal>().As<IRentalsDal>().SingleInstance();
+            builder.RegisterType<RentalManager>().As<IRentalService>().SingleInstance();
+            builder.RegisterType<EfRentalsDal>().As<IRentalDal>().SingleInstance();
 
             builder.RegisterType<CustomerManager>().As<ICustomerService>().SingleInstance();
-            builder.RegisterType<EfCustomersDal>().As<ICustomersDal>().SingleInstance();
+            builder.RegisterType<EfCustomersDal>().As<ICustomerDal>().SingleInstance();
 
-            builder.RegisterType<CarImageManager>().As<ICarsImageService>().SingleInstance();
-            builder.RegisterType<EfCarsImageDal>().As<ICarsImageDal>().SingleInstance();
+            builder.RegisterType<CarImageManager>().As<ICarImageService>().SingleInstance();
+            builder.RegisterType<EfCarsImageDal>().As<ICarImageDal>().SingleInstance();
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

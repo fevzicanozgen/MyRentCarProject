@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Business.ValidationRules.FluentValidation
 {
-    class CarsImageValidator : AbstractValidator<CarsImage>
+    class CarImageValidator : AbstractValidator<CarImage>
     {
-        public CarsImageValidator()
+        public CarImageValidator()
         {
            // RuleFor(c => c.Id).NotEmpty();
         }
