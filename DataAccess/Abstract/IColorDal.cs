@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-   public interface IColorDal : IEntityRepository<Color>
-    {
-    }
+       public interface IColorDal : IEntityRepository<Color>
+        {
+        }
 }

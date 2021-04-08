@@ -12,16 +12,16 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarsDal : EfEntityRepositoryBase<Cars, MyDatabaseContext>, ICarDal
+    public class EfCarsDal : EfEntityRepositoryBase<Car, MyDatabaseContext>, ICarDal
     {
         public List<CarDetailDto> GetCarDetails(Expression<Func<CarDetailDto, bool>> filter = null)
         {
             using (MyDatabaseContext context = new MyDatabaseContext())
             {
-                var result = from c in context.cars
-                             join b in context.brand
+                var result = from c in context.Cars
+                             join b in context.Brands
                              on c.BrandId equals b.BrandId
-                             join color in context.colors
+                             join color in context.Colors
                              on c.ColorId equals color.ColorsId
                              select new CarDetailDto {
                                  CarName = c.CarName,

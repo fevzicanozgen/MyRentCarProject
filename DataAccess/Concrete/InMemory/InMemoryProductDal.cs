@@ -12,20 +12,20 @@ namespace DataAccess.Concrete.InMemory
 {
     public class InMemoryProductDal : ICarDal
     {
-        List<Cars> _cars;
+        List<Car> _cars;
 
         public InMemoryProductDal()
         {
-            _cars = new List<Cars>
+            _cars = new List<Car>
             {
-                new Cars {Id=1,BrandId=1,ColorId=1,DailyPrice=1000,ModelYear=2021,Description="Red BMW M4"},
-                  new Cars {Id=2,BrandId=2,ColorId=2,DailyPrice=750,ModelYear=2019,Description="Black Mercedes E250"},
-                    new Cars {Id=3,BrandId=3,ColorId=3,DailyPrice=600,ModelYear=2017,Description="White Audi A3"},
-                      new Cars {Id=4,BrandId=4,ColorId=4,DailyPrice=350,ModelYear=2015,Description="Blue VW Polo"},
+                new Car {Id=1,BrandId=1,ColorId=1,DailyPrice=1000,ModelYear=2021,Description="Red BMW M4"},
+                  new Car {Id=2,BrandId=2,ColorId=2,DailyPrice=750,ModelYear=2019,Description="Black Mercedes E250"},
+                    new Car {Id=3,BrandId=3,ColorId=3,DailyPrice=600,ModelYear=2017,Description="White Audi A3"},
+                      new Car {Id=4,BrandId=4,ColorId=4,DailyPrice=350,ModelYear=2015,Description="Blue VW Polo"},
             };
         }
 
-        public void Add(Cars entity)
+        public void Add(Car entity)
         {
             _cars.Add(entity);
         }
@@ -35,22 +35,30 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
-        public void Delete(Cars entity)
+    
+
+        public void Delete(Car entity)
         {
-            Cars CarToDelete = CarToDelete = _cars.SingleOrDefault(c => c.Id == entity.Id);
+            Car CarToDelete = CarToDelete = _cars.SingleOrDefault(c => c.Id == entity.Id);
             _cars.Remove(CarToDelete);
         }
 
-        public Cars Get(Expression<Func<Cars, bool>> filter)
+     
+
+        public Car Get(Expression<Func<Car, bool>> filter)
         {
             throw new NotImplementedException();
         }
 
-        public List<Cars> GetAll(Expression<Func<Cars, bool>> filter = null)
+     
+
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
         {
             return _cars.Where(c => c.Id==c.Id ).ToList();
            
         }
+
+        
 
         public List<CarDetailDto> GetCarDetailDtos()
         {
@@ -67,14 +75,16 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
-        public void Update(Cars entity)
+        public void Update(Car entity)
         {
-            Cars CarToUpdate = CarToUpdate = _cars.SingleOrDefault(c => c.Id == entity.Id);
+            Car CarToUpdate = CarToUpdate = _cars.SingleOrDefault(c => c.Id == entity.Id);
             CarToUpdate.ModelYear = entity.ModelYear;
             CarToUpdate.ColorId = entity.ColorId;
             CarToUpdate.BrandId = entity.BrandId;
             CarToUpdate.DailyPrice = entity.DailyPrice;
             CarToUpdate.Description = entity.Description;
         }
+
+       
     }
 }

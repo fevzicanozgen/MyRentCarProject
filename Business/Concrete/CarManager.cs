@@ -24,7 +24,7 @@ namespace Business.Concrete
             _carsDal = carsDal;
         }
         [ValidationAspect(typeof(CarValidator))]
-        public IResult Add(Cars cars)
+        public IResult Add(Car cars)
         {
                 _carsDal.Add(cars);
                 return new SuccessResult(Messages.CarAdded);
@@ -33,18 +33,18 @@ namespace Business.Concrete
 
 
 
-        public IDataResult<List<Cars>> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
             
-            return new SuccessDataResult<List<Cars>>(_carsDal.GetAll(), Messages.CarListed);
+            return new SuccessDataResult<List<Car>>(_carsDal.GetAll(), Messages.CarListed);
         }
 
-        public IDataResult<List<Cars>> GetAllById(int id)
+        public IDataResult<List<Car>> GetAllById(int id)
         {
-            return new SuccessDataResult<List<Cars>>(_carsDal.GetAll(c => c.Id == id));
+            return new SuccessDataResult<List<Car>>(_carsDal.GetAll(c => c.Id == id));
         }
 
-        public DataResult<List<Cars>> GetByDailyPrice()
+        public DataResult<List<Car>> GetByDailyPrice()
         {
             throw new NotImplementedException();
         }
@@ -60,15 +60,15 @@ namespace Business.Concrete
 
 
         }
-        public IDataResult<List<Cars>> GetCarsByBrandId(int id)
+        public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
-            return new SuccessDataResult<List<Cars>>(_carsDal.GetAll(c=>c.BrandId==id));
+            return new SuccessDataResult<List<Car>>(_carsDal.GetAll(c=>c.BrandId==id));
 
         }
 
-        public IDataResult<List<Cars>> GetCarsByColorId(int id)
+        public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
-            return new SuccessDataResult<List<Cars>>(_carsDal.GetAll(c => c.ColorId == id));
+            return new SuccessDataResult<List<Car>>(_carsDal.GetAll(c => c.ColorId == id));
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Core.Result;
-using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Core.Result;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-   public interface IUserService
+    public interface IUserService
     {
         IResult Add(User user);
-        IResult Delete(User user);
-        IResult Update(User user);
+        User GetByMail(string email);
         IDataResult<List<User>> GetAll();
-        IDataResult<List<User>> GetAllById(int id);
+        List<OperationClaim> GetClaims(User user);
+
     }
 }

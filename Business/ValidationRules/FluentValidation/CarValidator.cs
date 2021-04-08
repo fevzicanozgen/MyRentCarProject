@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Business.ValidationRules.FluentValidation
 {
-    public class CarValidator : AbstractValidator<Cars>
+    public class CarValidator : AbstractValidator<Car>
     {
         public CarValidator()
         {
