@@ -1,5 +1,6 @@
 using Business.Abstract;
 using Business.Concrete;
+using Core.DependencyResolvers;
 using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
@@ -39,7 +40,7 @@ namespace WebAPI
         {
 
             services.AddControllers();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+          
             //services.AddSingleton<ICarService, CarManager>();
             //services.AddSingleton<ICarsDal, EfCarsDal>();
 
@@ -58,7 +59,7 @@ namespace WebAPI
             //services.AddSingleton<IRentalsService, RentalsManager>();
             //services.AddSingleton<IRentalsDal, EfRentalsDal>();
 
-            services.AddCors();
+            
             
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
@@ -77,8 +78,10 @@ namespace WebAPI
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
-            ServiceTool.Create(services);
-         
+            services.AddDependencyResolvers(new ICoreModule[] {
+            new CoreModule()
+            });
+
 
             services.AddSwaggerGen(c =>
             {

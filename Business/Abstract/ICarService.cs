@@ -22,7 +22,7 @@ namespace Business.Abstract
         DataResult<List<Car>> GetByDailyPrice();
         IDataResult<List<CarDetailDto>> GetCarDetails();
         IResult Add(Car cars);
-
+        IResult TransactionalOperation(Car car);
     }
 
 }
