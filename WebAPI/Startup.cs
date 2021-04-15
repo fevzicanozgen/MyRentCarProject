@@ -40,27 +40,14 @@ namespace WebAPI
         {
 
             services.AddControllers();
-          
-            //services.AddSingleton<ICarService, CarManager>();
-            //services.AddSingleton<ICarsDal, EfCarsDal>();
 
-            //services.AddSingleton<IBrandService, BrandManager>();
-            //services.AddSingleton<IBrandDal, EfBrandDal>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowOrigin",
+                    builder => builder.WithOrigins("http://localhost:4200"));
+            });
 
-            //services.AddSingleton<IColorService, ColorManager>();
-            //services.AddSingleton<IColorsDal, EfColorsDal>();
 
-            //services.AddSingleton<ICustomerService, CustomerManager>();
-            //services.AddSingleton<ICustomersDal, EfCustomersDal>();
-
-            //services.AddSingleton<IUsersService, UserManager>();
-            //services.AddSingleton<IUsersDal, EfUsersDal>();
-
-            //services.AddSingleton<IRentalsService, RentalsManager>();
-            //services.AddSingleton<IRentalsDal, EfRentalsDal>();
-
-            
-            
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -98,7 +85,10 @@ namespace WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }
-           
+
+            app.ConfigureCustomExceptionMiddleware();
+
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
 
             app.UseHttpsRedirection();
