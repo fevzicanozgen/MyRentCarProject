@@ -17,12 +17,7 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(c => c.ColorId).NotEmpty();
             RuleFor(c => c.DailyPrice).GreaterThan(0);
             RuleFor(c => c.DailyPrice).GreaterThanOrEqualTo(10).When(c => c.BrandId== 1);
-            RuleFor(c => c.CarName).Must(StartWithA).WithMessage("Carname A harfi ile başlamalı");
         }
 
-        private bool StartWithA(string arg)
-        {
-            return arg.StartsWith("A");
-        }
     }
 }

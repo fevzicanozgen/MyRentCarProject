@@ -47,7 +47,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAllById(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carsDal.GetAll(c => c.Id == id));
+            return new SuccessDataResult<List<Car>>(_carsDal.GetAll(c => c.CarId == id));
         }
 
         public DataResult<List<Car>> GetByDailyPrice()
@@ -57,7 +57,7 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            if (DateTime.Now.Hour == 23)
+            if (DateTime.Now.Hour == 10)
             {
                 return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTeam);
 

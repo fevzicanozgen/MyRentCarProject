@@ -18,10 +18,10 @@ namespace DataAccess.Concrete.InMemory
         {
             _cars = new List<Car>
             {
-                new Car {Id=1,BrandId=1,ColorId=1,DailyPrice=1000,ModelYear=2021,Description="Red BMW M4"},
-                  new Car {Id=2,BrandId=2,ColorId=2,DailyPrice=750,ModelYear=2019,Description="Black Mercedes E250"},
-                    new Car {Id=3,BrandId=3,ColorId=3,DailyPrice=600,ModelYear=2017,Description="White Audi A3"},
-                      new Car {Id=4,BrandId=4,ColorId=4,DailyPrice=350,ModelYear=2015,Description="Blue VW Polo"},
+                new Car {CarId=1,BrandId=1,ColorId=1,DailyPrice=1000,ModelYear=2021,Description="Red BMW M4"},
+                  new Car {CarId=2,BrandId=2,ColorId=2,DailyPrice=750,ModelYear=2019,Description="Black Mercedes E250"},
+                    new Car {CarId=3,BrandId=3,ColorId=3,DailyPrice=600,ModelYear=2017,Description="White Audi A3"},
+                      new Car {CarId=4,BrandId=4,ColorId=4,DailyPrice=350,ModelYear=2015,Description="Blue VW Polo"},
             };
         }
 
@@ -39,7 +39,7 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Car entity)
         {
-            Car CarToDelete = CarToDelete = _cars.SingleOrDefault(c => c.Id == entity.Id);
+            Car CarToDelete = CarToDelete = _cars.SingleOrDefault(c => c.CarId == entity.CarId);
             _cars.Remove(CarToDelete);
         }
 
@@ -54,7 +54,7 @@ namespace DataAccess.Concrete.InMemory
 
         public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
         {
-            return _cars.Where(c => c.Id==c.Id ).ToList();
+            return _cars.Where(c => c.CarId==c.CarId ).ToList();
            
         }
 
@@ -77,7 +77,7 @@ namespace DataAccess.Concrete.InMemory
 
         public void Update(Car entity)
         {
-            Car CarToUpdate = CarToUpdate = _cars.SingleOrDefault(c => c.Id == entity.Id);
+            Car CarToUpdate = CarToUpdate = _cars.SingleOrDefault(c => c.CarId == entity.CarId);
             CarToUpdate.ModelYear = entity.ModelYear;
             CarToUpdate.ColorId = entity.ColorId;
             CarToUpdate.BrandId = entity.BrandId;

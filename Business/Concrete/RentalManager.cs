@@ -5,6 +5,7 @@ using Core.Aspects.Autofac.Validation;
 using Core.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,15 @@ namespace Business.Concrete
 {
     public class RentalManager : IRentalService
     {
-        IRentalDal _rentalDal;
+        private IRentalDal _rentalDal;
+        private ICarService _carService;
+        private ICustomerService _customerService;
 
-        public RentalManager(IRentalDal rentalDal)
+        public RentalManager(IRentalDal rentalDal, ICarService carService, ICustomerService customerService)
         {
             _rentalDal = rentalDal;
+            _carService = carService;
+            _customerService = customerService;
         }
 
         public IResult Delete(Rental rental)
@@ -36,7 +41,7 @@ namespace Business.Concrete
         public IDataResult<List<Rental>> GetAllById(int id)
         {
 
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(p => p.Id == id));
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(p => p.RentalId == id));
         }
 
 
@@ -52,6 +57,11 @@ namespace Business.Concrete
         {
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.RentalUpdated);
+        }
+
+        public IDataResult<List<RentalDetailDto>> GetRentalDetailsDto()
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(), Messages.RentalListed);
         }
     }
 }

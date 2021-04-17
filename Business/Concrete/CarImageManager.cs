@@ -43,7 +43,7 @@ namespace Business.Concrete
 
         public IResult Delete(CarImage carImages)
         {
-            var oldpath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\wwwroot")) + _carsImageDal.GetAll(p => p.Id == carImages.Id);
+            var oldpath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\wwwroot")) + _carsImageDal.GetAll(p => p.CarImageId == carImages.CarImageId);
             IResult result = BusinessRules.Run(FileHelper.Delete(oldpath));
 
             if (result != null)
@@ -59,7 +59,7 @@ namespace Business.Concrete
 
         public IDataResult<CarImage> Get(int id)
         {
-            return new SuccessDataResult<CarImage>(_carsImageDal.Get(p => p.Id == id));
+            return new SuccessDataResult<CarImage>(_carsImageDal.Get(p => p.CarImageId == id));
         }
 
         public IDataResult<List<CarImage>> GetAll()
@@ -83,7 +83,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Update(CarImage carImage, IFormFile file)
         {
-            var oldPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\wwwroot")) + _carsImageDal.Get(p => p.Id == carImage.CarId).ImagePath;
+            var oldPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\wwwroot")) + _carsImageDal.Get(p => p.CarImageId == carImage.CarId).ImagePath;
 
             carImage.ImagePath = FileHelper.Update(oldPath, file);
             carImage.Date = DateTime.Now;
