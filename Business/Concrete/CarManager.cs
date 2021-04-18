@@ -50,7 +50,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carsDal.GetAll(c => c.CarId == id));
         }
 
-        public DataResult<List<Car>> GetByDailyPrice()
+        public IDataResult<List<Car>> GetByDailyPrice()
         {
             throw new NotImplementedException();
         }
@@ -66,15 +66,15 @@ namespace Business.Concrete
 
 
         }
-        public IDataResult<List<Car>> GetCarsByBrandId(int id)
+        public IDataResult<List<CarDetailDto>> GetCarsByBrandId(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carsDal.GetAll(c=>c.BrandId==id));
+            return new SuccessDataResult<List<CarDetailDto>>(_carsDal.GetCarDetails().Where(c => c.BrandId == id).ToList());
 
         }
 
-        public IDataResult<List<Car>> GetCarsByColorId(int id)
+        public IDataResult<List<CarDetailDto>> GetCarsByColorId(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carsDal.GetAll(c => c.ColorId == id));
+            return new SuccessDataResult<List<CarDetailDto>>(_carsDal.GetCarDetails().Where(c => c.ColorsId == id).ToList());
         }
 
         [TransactionScopeAspect]
@@ -84,5 +84,7 @@ namespace Business.Concrete
             _carsDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
         }
+
+     
     }
 }
