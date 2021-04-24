@@ -15,12 +15,14 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -42,7 +44,7 @@ namespace WebAPI
             services.AddControllers();
 
             services.AddCors();
-
+            
 
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
@@ -83,6 +85,12 @@ namespace WebAPI
             }
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/Images")),
+                RequestPath = @"/wwwroot/Images"
+            });
 
             app.UseHttpsRedirection();
 

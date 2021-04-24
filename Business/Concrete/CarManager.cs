@@ -50,6 +50,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carsDal.GetAll(c => c.CarId == id));
         }
 
+        public IDataResult<List<CarDetailDto>> GetBrandAndColorId(int brandId,int colorsId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carsDal.GetCarDetails().Where(c => c.BrandId == brandId && c.ColorsId == colorsId).ToList());
+        }
+
         public IDataResult<List<Car>> GetByDailyPrice()
         {
             throw new NotImplementedException();
