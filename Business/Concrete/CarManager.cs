@@ -62,11 +62,7 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            if (DateTime.Now.Hour == 10)
-            {
-                return new ErrorDataResult<List<CarDetailDto>>(Messages.MaintenanceTeam);
-
-            }
+           
             return new SuccessDataResult<List<CarDetailDto>>(_carsDal.GetCarDetails(), Messages.CarListed);
 
 
@@ -80,6 +76,11 @@ namespace Business.Concrete
         public IDataResult<List<CarDetailDto>> GetCarsByColorId(int id)
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carsDal.GetCarDetails().Where(c => c.ColorsId == id).ToList());
+        }
+
+        public IDataResult<List<CarDetailDto>> GetDtoById(int carId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carsDal.GetCarDetails().Where(c => c.CarId == carId).ToList());
         }
 
         [TransactionScopeAspect]

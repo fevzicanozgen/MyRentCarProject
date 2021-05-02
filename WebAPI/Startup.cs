@@ -85,12 +85,9 @@ namespace WebAPI
             }
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/Images")),
-                RequestPath = @"/wwwroot/Images"
-            });
+            app.UseStaticFiles();
+            
+             
 
             app.UseHttpsRedirection();
 

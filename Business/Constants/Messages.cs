@@ -48,12 +48,12 @@ namespace Business.Constants
         public static string UserListed = "Users listed";
         public static string UserListedById = "Users listed by id number";
 
-        internal static string CarCheckImageLimited = "Check Car Image Limited";
-        internal static string CarImagesListed = "Card images listed";
-        internal static string CarImageAdded = "New car image added";
-        internal static string CarImageDeleted = "The car image deleted";
+        public static string CarCheckImageLimited = "Check Car Image Limited";
+        public static string CarImagesListed = "Card images listed";
+        public static string CarImageAdded = "New car image added";
+        public static string CarImageDeleted = "The car image deleted";
 
-        internal static string AuthorizationDenied = "You aren't authorized";
+        public static string AuthorizationDenied = "You aren't authorized";
         public static string UserRegistered = "User registered";
         public static string UserNotFound = "User not found";
         public static string PasswordError = "You entered the password incorrectly";
@@ -61,8 +61,27 @@ namespace Business.Constants
         public static string UserAlreadyExists = "User already exist";
         public static string AccessTokenCreated = "Created Token";
 
-     
+        public static string CreditCardAddedSuccessfully = "Credit Card Added";
+        public static string CreditCardDeletedSuccessfully = "Credit Card Deleted";
+        public static string GetCreditCardByCardIdSuccessfully = "Credit Card Detail Listed";
+        public static string GetAllCreditCardsSuccessfully = "Credit Cards Listed";
+        public static string GetUserCardListSuccessfully = "User Credit  Cards Listed";
+        public static string GetCreditCardByCardTypeIdSuccessfully = "Get Credit Card By Card Type Id Successfully";
 
-        
+
+        public static string CardTypeAddedSuccessfully = "Card Type Added";
+        public static string CardTypeUpdatedSuccessfully = "Card Type Updated";
+        public static string CardTypeDeletedSuccessfully = "Card Type Deleted";
+        public static string GetAllCardTypesSuccessfully = "Card Type Listed";
+        public static string GetTypeByIdSuccessfully = "Card Type Details Listed";
+        public static string SelectedCardGetsSuccessfully = "Selected Card Gets Successfully";
+
+
+        public static string PaymentSuccessfull = "Payment Successfull";
+        public static string PaymentError = "Payment Error";
+
+
+
+
     }
 }

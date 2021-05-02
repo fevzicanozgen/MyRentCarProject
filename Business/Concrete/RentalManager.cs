@@ -63,5 +63,22 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(), Messages.RentalListed);
         }
+
+        public IResult GetRentalsCar(Rental rental)
+        {
+            if (rental.RentDate > rental.ReturnDate) return new ErrorResult("Teslim tarihi alış tarihinden küçük olamaz.");
+            var result = _rentalDal.GetRentalDetails(r => r.CarId == rental.CarId).
+                Where(r =>
+                        ((r.RentDate == rental.RentDate) && (r.ReturnDate == rental.ReturnDate)) ||
+                        ((rental.RentDate >= r.RentDate) && (rental.RentDate <= r.ReturnDate)) ||
+                        ((rental.ReturnDate >= r.RentDate) && (rental.ReturnDate <= r.ReturnDate))).ToList();
+
+            if (result.Count > 0)
+            {
+                string errorMessage = "seçilen tarihler arasında araç zaten kiralanmış.";
+                return new ErrorResult(errorMessage);
+            }
+            return new SuccessResult("seçilen tarihler arasında araç kiralanabilir.");
+        }
     }
 }

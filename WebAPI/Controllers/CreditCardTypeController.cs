@@ -11,63 +11,72 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ColorController : ControllerBase
+    public class CreditCardTypeController : ControllerBase
     {
-        IColorService _colorService;
+        ICreditCardTypeService _creditCardTypeService;
 
-        public ColorController(IColorService colorService)
+        public CreditCardTypeController(ICreditCardTypeService creditCardTypeService)
         {
-            _colorService = colorService;
+            _creditCardTypeService = creditCardTypeService;
         }
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
+            var result = _creditCardTypeService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
 
-            var result = _colorService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
             return BadRequest(result);
         }
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+
+        [HttpGet("getcardtypebyid")]
+        public IActionResult GetCardTypeById(int typeId)
         {
-            var result = _colorService.GetAllById(id);
+            var result = _creditCardTypeService.GetCardTypeById(typeId);
             if (result.Success)
             {
                 return Ok(result);
             }
+
             return BadRequest(result);
         }
+
         [HttpPost("add")]
-        public IActionResult Add(Color color)
+        public IActionResult Add(CreditCardType creditCardType)
         {
-            var result = _colorService.Add(color);
+            var result = _creditCardTypeService.Add(creditCardType);
             if (result.Success)
             {
                 return Ok(result);
             }
-            return BadRequest(result.Message);
-        }
-        [HttpPost("update")]
-        public IActionResult Update(Color color)
-        {
-            var result = _colorService.Update(color);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
+
             return BadRequest(result);
         }
-        [HttpPost("delete")]
-        public IActionResult Delete(Color color)
+
+        [HttpPost("update")]
+        public IActionResult Update(CreditCardType creditCardType)
         {
-            var result = _colorService.Delete(color);
+            var result = _creditCardTypeService.Update(creditCardType);
             if (result.Success)
             {
                 return Ok(result);
             }
+
+            return BadRequest(result);
+        }
+
+        [HttpPost("delete")]
+        public IActionResult Delete(CreditCardType creditCardType)
+        {
+            var result = _creditCardTypeService.Delete(creditCardType);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
             return BadRequest(result);
         }
     }
