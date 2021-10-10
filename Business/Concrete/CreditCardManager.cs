@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Business;
 using Core.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -13,7 +15,7 @@ namespace Business.Concrete
 {
     public class CreditCardManager : ICreditCardService
     {
-        private readonly ICreditCardDal _creditCardDal;
+        ICreditCardDal _creditCardDal;
 
         public CreditCardManager(ICreditCardDal creditCardDal)
         {
@@ -22,14 +24,19 @@ namespace Business.Concrete
 
         public IResult Add(CreditCard creditCard)
         {
-            _creditCardDal.Add(creditCard);
-            return new SuccessResult();
+            var creditCardOfCustomer = _creditCardDal.Get(cc => cc.CustomerId == creditCard.CustomerId && cc.CardNumber.Equals(creditCard.CardNumber));
+            if (creditCardOfCustomer is null)
+            {
+                _creditCardDal.Add(creditCard);
+                return new SuccessResult(Messages.CreditCardAddedSuccessfully);
+            }
+            return new SuccessResult(Messages.CreditCardAddedSuccessfully);
         }
 
         public IResult Delete(CreditCard creditCard)
         {
             _creditCardDal.Delete(creditCard);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CreditCardDeletedSuccessfully);
         }
 
         public IDataResult<List<CreditCard>> GetAll()
@@ -37,20 +44,15 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CreditCard>>(_creditCardDal.GetAll());
         }
 
-        public IDataResult<CreditCardDto> GetCardByCustomerId(int customerId)
+        public IDataResult<List<CreditCard>> GetByCustomerId(int customerId)
         {
-            return new SuccessDataResult<CreditCardDto>(_creditCardDal.GetCardByCustomerId(customerId));
-        }
-
-        public IDataResult<List<CreditCardDto>> GetCardsByCustomerId(int customerId)
-        {
-            return new SuccessDataResult<List<CreditCardDto>>(_creditCardDal.GetCardsDetails(c => c.CustomerId == customerId));
+            return new SuccessDataResult<List<CreditCard>>(_creditCardDal.GetAll(cc => cc.CustomerId == customerId).ToList());
         }
 
         public IResult Update(CreditCard creditCard)
         {
             _creditCardDal.Update(creditCard);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CreditCardUpdated);
         }
     }
 }

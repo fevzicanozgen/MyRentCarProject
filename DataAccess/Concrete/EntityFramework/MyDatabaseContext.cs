@@ -13,8 +13,9 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=MyDb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=Can\SQLEXPRESS;Database=MyDb;Trusted_Connection=True");
         }
+        //(localdb)\MSSQLLocalDB;Database=MyDb;Trusted_Connection=True;
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brand { get; set; }
         public DbSet<Color> Colors { get; set; }
@@ -25,7 +26,6 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<CreditCard> CreditCards { get; set; }
-        public DbSet<CreditCardType> CreditCardTypes { get; set; }
         public DbSet<Payment> Payments { get; set; }
     }
 }

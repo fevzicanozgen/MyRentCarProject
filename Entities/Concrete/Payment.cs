@@ -13,7 +13,6 @@ namespace Entities.Concrete
         public int CustomerId { get; set; }
         public int CarId { get; set; }
         public int TotalPrice { get; set; }
-        public int CreditCardTypeId { get; set; }
         public int CreditCardId { get; set; }
     }
 }

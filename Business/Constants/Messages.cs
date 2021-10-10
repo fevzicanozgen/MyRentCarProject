@@ -67,6 +67,7 @@ namespace Business.Constants
         public static string GetAllCreditCardsSuccessfully = "Credit Cards Listed";
         public static string GetUserCardListSuccessfully = "User Credit  Cards Listed";
         public static string GetCreditCardByCardTypeIdSuccessfully = "Get Credit Card By Card Type Id Successfully";
+        public static string CreditCardUpdated = "Updated";
 
 
         public static string CardTypeAddedSuccessfully = "Card Type Added";
@@ -75,13 +76,12 @@ namespace Business.Constants
         public static string GetAllCardTypesSuccessfully = "Card Type Listed";
         public static string GetTypeByIdSuccessfully = "Card Type Details Listed";
         public static string SelectedCardGetsSuccessfully = "Selected Card Gets Successfully";
+        public static string CardAlreadyExists = "Card Already Exists";
 
 
         public static string PaymentSuccessfull = "Payment Successfull";
         public static string PaymentError = "Payment Error";
-
-
-
+        public static string NotExist = "Not Exist";
 
     }
 }

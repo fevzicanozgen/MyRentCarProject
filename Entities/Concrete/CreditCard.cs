@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    [Table("CreditCard", Schema = "dbo")]
+    [Table("CreditCards", Schema = "dbo")]
     public class CreditCard : IEntity
     {
         [Key]
         public int CreditCardId { get; set; }
         public int CustomerId { get; set; }
-        public int CreditCardTypeId { get; set; }
         public string CardNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

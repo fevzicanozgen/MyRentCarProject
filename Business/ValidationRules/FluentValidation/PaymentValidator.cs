@@ -12,7 +12,7 @@ namespace Business.ValidationRules.FluentValidation
     {
         public PaymentValidator()
         {
-            RuleFor(c => c.CustomerId).NotEmpty();
+           
             
         }
     }

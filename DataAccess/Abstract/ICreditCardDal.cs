@@ -11,8 +11,6 @@ namespace DataAccess.Abstract
 {
     public interface ICreditCardDal : IEntityRepository<CreditCard>
     {
-        CreditCardDto GetCardDetails(Expression<Func<CreditCardDto, bool>> filter = null);
-        List<CreditCardDto> GetCardsDetails(Expression<Func<CreditCardDto, bool>> filter = null);
-        CreditCardDto GetCardByCustomerId(int customerId);
+       
     }
 }

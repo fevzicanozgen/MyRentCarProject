@@ -13,7 +13,6 @@ namespace Business.ValidationRules.FluentValidation
         public CreditCardValidator()
         {
             RuleFor(t => t.CardNumber).NotEmpty();
-            RuleFor(t => t.CreditCardTypeId).NotEmpty();
             RuleFor(t => t.Cvv).NotNull();
             RuleFor(t => t.FirstName).NotEmpty();
             RuleFor(t => t.LastName).NotEmpty();
